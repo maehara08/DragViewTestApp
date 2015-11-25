@@ -33,7 +33,7 @@ public class MainActivity extends AppCompatActivity {
             }
         });
     }
-
+//Toastのメソッド
     private void showToast() {
         Toast.makeText(this, "Toastです", Toast.LENGTH_SHORT).show();
     }
