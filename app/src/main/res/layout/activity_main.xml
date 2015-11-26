@@ -7,19 +7,16 @@
 
     <FrameLayout
         android:layout_width="match_parent"
-<<<<<<< HEAD
+
         android:layout_height="match_parent"
         android:id="@+id/container">
-=======
         android:layout_height="match_parent">
->>>>>>> 5df95b23c6c24024d38462dfc4cde077ae994924
 
         <TextView
             android:layout_width="130dp"
             android:layout_height="32dp"
             android:text="移動可能！！"
             android:id="@+id/textView"
-<<<<<<< HEAD
             android:layout_gravity="center_horizontal|top"
             android:textSize="19dp" />
 
@@ -30,7 +27,6 @@
             android:id="@+id/button2"
             android:layout_gravity="center" />
 
-=======
             android:layout_gravity="center"
             android:textSize="19dp" />
 
@@ -40,6 +36,5 @@
             android:id="@+id/editText"
             android:layout_gravity="center_horizontal|top"
             android:text="移動可能" />
->>>>>>> 5df95b23c6c24024d38462dfc4cde077ae994924
     </FrameLayout>
 </LinearLayout>
