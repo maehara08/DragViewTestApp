@@ -31,11 +31,11 @@ public class MainFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
 //        TextViewを紐付ける
-        mTextView=(TextView) view.findViewById(R.id.textView2);
+        mTextView = (TextView) view.findViewById(R.id.textView2);
         view.findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                mTextView.setText(mTextView.getText()+"!");
+                mTextView.setText(mTextView.getText() + "!");
             }
         });
 

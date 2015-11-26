@@ -3,7 +3,7 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="horizontal"
-    android:id="@+id/container">
+    android:id="@+id/container1">
 
     <FrameLayout
         android:layout_width="match_parent"
@@ -25,16 +25,11 @@
             android:layout_height="wrap_content"
             android:text="New Button"
             android:id="@+id/button2"
-            android:layout_gravity="center" />
+            android:layout_gravity="center" /><![CDATA[
 
             android:layout_gravity="center"
             android:textSize="19dp" />
 
-        <EditText
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/editText"
-            android:layout_gravity="center_horizontal|top"
-            android:text="移動可能" />
+        ]]>
     </FrameLayout>
 </LinearLayout>
