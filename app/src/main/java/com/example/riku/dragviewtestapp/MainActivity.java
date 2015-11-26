@@ -1,11 +1,14 @@
 package com.example.riku.dragviewtestapp;
-<<<<<<< HEAD
+
+import android.support.v4.app.FragmentTransaction;
+
+
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
-=======
 
->>>>>>> 5df95b23c6c24024d38462dfc4cde077ae994924
+
+
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -38,7 +41,6 @@ public class MainActivity extends AppCompatActivity {
                 return false;//trueにすると他のリスナーが呼ばれない
             }
         });
-<<<<<<< HEAD
 
 
         //Fragmentを設置
@@ -52,8 +54,7 @@ public class MainActivity extends AppCompatActivity {
         transaction.add(R.id.container,fragment);
         // 最後にcommitを使用することで変更を反映します
         transaction.commit();
-=======
->>>>>>> 5df95b23c6c24024d38462dfc4cde077ae994924
+
     }
 //Toastのメソッド
     private void showToast() {
