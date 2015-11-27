@@ -7,10 +7,14 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
+import android.app.FragmentTransaction;
+import android.support.v7.app.AppCompatActivity;
+import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.app.FragmentTransaction;
 
-import static android.widget.Toast.*;
 
 /**
  * Created by riku_maehara on 2015/11/26.
@@ -20,7 +24,7 @@ public class AlartDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final String[] items = {"使い方", "よくある質問", "メール", "閉じる"};
+        final String[] items = {"NewCard", "Change Colour", "Delete", "Edit"};
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -30,19 +34,30 @@ public class AlartDialogFragment extends DialogFragment {
                 switch (which) {
                     case 0:
 
-                        makeToast(items[0]+"が押されました");
+                        makeToast(items[0] + "が押されました");
+                        //Fragmentを設置
+                        // Fragmentを作成します
+                        DragViewFragment fragment = new DragViewFragment();
+                        // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
+                        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+                        // 新しく追加を行うのでaddを使用します
+                        // 他にも、メソッドにはreplace removeがあります
+                        // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
+                        transaction.add(R.id.container, fragment);
+                        // 最後にcommitを使用することで変更を反映します
+                        transaction.commit();
 
                         break;
                     case 1:
-                        makeToast(items[1]+"が押されました");
+                        makeToast(items[1] + "が押されました");
 
                         break;
                     case 2:
-                        makeToast(items[2]+"が押されました");
+                        makeToast(items[2] + "が押されました");
 
                         break;
                     case 3:
-                        makeToast(items[3]+"が押されました");
+                        makeToast(items[3] + "が押されました");
 
                         break;
                     default:
@@ -58,5 +73,4 @@ public class AlartDialogFragment extends DialogFragment {
 
         toast.show();
     }
-
 }

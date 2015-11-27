@@ -9,16 +9,10 @@
         android:layout_width="match_parent"
 
         android:layout_height="match_parent"
-        android:id="@+id/container">
+        android:id="@+id/container"><![CDATA[
         android:layout_height="match_parent">
 
-        <TextView
-            android:layout_width="130dp"
-            android:layout_height="32dp"
-            android:text="移動可能！！"
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal|top"
-            android:textSize="19dp" />
+        ]]>
 
         <Button
             android:layout_width="wrap_content"
