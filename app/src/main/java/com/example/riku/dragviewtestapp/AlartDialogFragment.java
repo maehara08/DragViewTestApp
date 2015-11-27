@@ -7,6 +7,7 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.app.DialogFragment;
 import android.support.v4.app.Fragment;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import static android.widget.Toast.*;
@@ -19,25 +20,30 @@ public class AlartDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        CharSequence[] items = {"使い方", "よくある質問", "メール", "閉じる"};
+        final String[] items = {"使い方", "よくある質問", "メール", "閉じる"};
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setItems(items, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+
                 switch (which) {
                     case 0:
-                        makeText(activity, "使い方が押された", LENGTH_LONG).show();
 
-                    break;
+                        makeToast(items[0]+"が押されました");
+
+                        break;
                     case 1:
-                        makeText(activity, "よくある質問が押された", LENGTH_LONG).show();
+                        makeToast(items[1]+"が押されました");
+
                         break;
                     case 2:
-                        makeText(activity, "メールが押された", LENGTH_LONG).show();
+                        makeToast(items[2]+"が押されました");
+
                         break;
                     case 3:
-                        makeText(activity, "閉じる", LENGTH_LONG).show();
+                        makeToast(items[3]+"が押されました");
+
                         break;
                     default:
                         break;
@@ -45,6 +51,12 @@ public class AlartDialogFragment extends DialogFragment {
             }
         });
         return builder.create();
+    }
+
+    public void makeToast(String message) {
+        Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
+
+        toast.show();
     }
 
 }

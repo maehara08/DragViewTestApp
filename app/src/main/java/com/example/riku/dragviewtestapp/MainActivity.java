@@ -1,7 +1,9 @@
 package com.example.riku.dragviewtestapp;
 
 
+import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
@@ -23,10 +25,23 @@ public class MainActivity extends AppCompatActivity {
         dragView.setOnTouchListener(listener);
 
 
+
+
+
+
+
+
+
+
+
+
+
+
         dragView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-//                showToast();
+//                Toast.makeText(MainActivity.class, "テスト", Toast.LENGTH_LONG).show();
+
 //                showNewFragment();
 // ダイアログを表示する
                 DialogFragment newFragment = new AlartDialogFragment();
@@ -38,6 +53,7 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
 
     private void showNewFragment() {
         //Fragmentを設置
@@ -52,7 +68,6 @@ public class MainActivity extends AppCompatActivity {
         // 最後にcommitを使用することで変更を反映します
         transaction.commit();
     }
-
 
 
     //Toastのメソッド
