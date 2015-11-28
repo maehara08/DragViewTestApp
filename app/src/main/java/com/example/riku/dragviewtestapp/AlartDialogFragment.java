@@ -16,6 +16,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
+import android.widget.FrameLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,7 +33,7 @@ public class AlartDialogFragment extends DialogFragment {
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
-        final String[] items = {"NewCard", "Change Colour", "Delete", "Edit"};
+        final String[] items = {"NewCard", "Change Text Color", "DeleteCard", "EditCard"};
 
 
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
@@ -61,18 +62,13 @@ public class AlartDialogFragment extends DialogFragment {
                     case 1: {
                         makeToast(items[1] + "が押されました");
 
-                        Fragment fragment = getParentFragment();
-                        if (fragment instanceof ClickListener) {
-                            if (nowColor == Color.BLUE) {
-                                ((ClickListener) fragment).onClick(Color.BLACK);
-                                nowColor = Color.BLACK;
-                            } else {
-                                nowColor = Color.BLUE;
-                                ((ClickListener) fragment).onClick(Color.BLUE);
-                            }
-                        }
-
+//                        Fragment fragment = getParentFragment();
+//                        if (fragment instanceof ClickListener) {
+//                            nowColor = Color.BLUE;
+//                            ((ClickListener) fragment).onClick(Color.BLUE);
+//                        }
                     }
+                    createColorDialog();
 
 
                     break;
@@ -80,19 +76,20 @@ public class AlartDialogFragment extends DialogFragment {
 
                         makeToast(items[2] + "が押されました");
 
-                        //Fragmentを設置
-                        // Fragmentを作成します
-                        //Fragmentを設置
-                        // Fragmentを作成します
-                        DragViewFragment fragment = new DragViewFragment();
-                        // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
-                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-                        // 新しく追加を行うのでaddを使用します
-                        // 他にも、メソッドにはreplace removeがあります
-                        // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
-                        transaction.remove(fragment);
-                        // 最後にcommitを使用することで変更を反映します
-                        transaction.commit();
+//                        //Fragmentを設置
+//                        // Fragmentを作成します
+//                        //Fragmentを設置
+//                        // Fragmentを作成します
+//                        DragViewFragment fragment = new DragViewFragment();
+//                        // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
+//                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+//                        // 新しく追加を行うのでaddを使用します
+//                        // 他にも、メソッドにはreplace removeがあります
+//                        // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
+//                        transaction.remove(fragment);
+//                        // 最後にcommitを使用することで変更を反映します
+//                        transaction.commit();
+                        fragmentRemover();
 
 
                         break;
@@ -131,13 +128,13 @@ public class AlartDialogFragment extends DialogFragment {
         View rootView = getActivity().getLayoutInflater().inflate(R.layout.sticky_config_dialog, null);
         final EditText input_editText_cfg_text = (EditText) rootView.findViewById(R.id.editText_text);
 
-        final EditText input_editText_cfg_url = (EditText) rootView.findViewById(R.id.eText_url_cfg);
-        input_editText_cfg_url.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
+//        final EditText input_editText_cfg_url = (EditText) rootView.findViewById(R.id.eText_url_cfg);
+//        input_editText_cfg_url.setInputType(InputType.TYPE_TEXT_VARIATION_URI);
 
 
         AlertDialog.Builder alartDialog = new AlertDialog.Builder(getActivity());
         final Fragment fragment = getParentFragment();
-        alartDialog.setTitle("Edit");
+        alartDialog.setTitle("EditText");
         alartDialog.setView(rootView);
 
 
@@ -148,16 +145,75 @@ public class AlartDialogFragment extends DialogFragment {
                 if (fragment instanceof ConfigListener) {
                     ((ConfigListener) fragment).onConfig(input_editText_cfg_text.getText().toString());
                 }
-
-
-                Log.v("OnClick", "input text = " + input_editText_cfg_text.getText().toString());
-
-
             }
         });
-
-
         alartDialog.create();
         alartDialog.show();
+    }
+    private void fragmentRemover(){
+        Fragment fragment =getParentFragment();
+        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
+        transaction.remove(fragment);
+        transaction.commit();
+
+    }
+
+
+    private void createColorDialog() {
+        final String[] items = {"Black","Blue", "Red", "Yellow","Green"};
+//        デフォルトで選択されているアイテム
+        final int[] selectedItem = {0};
+        new AlertDialog.Builder(getActivity())
+                .setTitle("Set Colour")
+                .setSingleChoiceItems(items, selectedItem[0], new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        selectedItem[0] = which;
+                    }
+                })
+                .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which1) {
+                        Fragment fragment = getParentFragment();
+                        switch (selectedItem[0]) {
+                            case 0:
+                                if (fragment instanceof ClickListener) {
+                                    ((ClickListener) fragment).onClick(Color.BLACK);
+                                    break;
+
+                                }
+                            case 1:
+                                if (fragment instanceof ClickListener) {
+                                    ((ClickListener) fragment).onClick(Color.BLUE);
+                                    break;
+
+                                }
+                            case 2:
+                                if (fragment instanceof ClickListener) {
+                                    ((ClickListener) fragment).onClick(Color.RED);
+                                    break;
+
+                                }
+                            case 3:
+                                if (fragment instanceof ClickListener) {
+                                    ((ClickListener) fragment).onClick(Color.YELLOW);
+                                    break;
+
+                                }
+                            case 4:
+                                if (fragment instanceof ClickListener) {
+                                    ((ClickListener) fragment).onClick(Color.GREEN);
+                                    break;
+
+                                }
+
+                        }
+                        Log.d("Select", String.valueOf(which1));
+
+
+                    }
+                }).setNegativeButton("Cancel", null).create().show();
+
+
     }
 }
