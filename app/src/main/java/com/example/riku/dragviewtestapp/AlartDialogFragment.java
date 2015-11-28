@@ -3,7 +3,9 @@ package com.example.riku.dragviewtestapp;
 import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
 import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -15,6 +17,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.InputType;
 import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.EditText;
 import android.widget.FrameLayout;
 import android.widget.TextView;
@@ -143,6 +146,7 @@ public class AlartDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 Fragment fragment = getParentFragment();
                 if (fragment instanceof ConfigListener) {
+                    
                     ((ConfigListener) fragment).onConfig(input_editText_cfg_text.getText().toString());
                 }
             }
@@ -216,4 +220,9 @@ public class AlartDialogFragment extends DialogFragment {
 
 
     }
+
+
+
+
+
 }

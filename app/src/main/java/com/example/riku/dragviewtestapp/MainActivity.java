@@ -1,20 +1,29 @@
 package com.example.riku.dragviewtestapp;
 
 
+import android.annotation.TargetApi;
 import android.app.AlertDialog;
 import android.app.DialogFragment;
+import android.content.Context;
 import android.content.DialogInterface;
+import android.content.SharedPreferences;
+import android.graphics.Rect;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
+import android.view.Window;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     TextView dragView;
     Button button;
+    int count;
 
 
     @Override
@@ -69,5 +78,17 @@ public class MainActivity extends AppCompatActivity {
     public void showToast() {
         Toast.makeText(this, "Toastです", Toast.LENGTH_SHORT).show();
     }
+
+
+
+
+
+
+
+
+
+
+
+
 }
 
