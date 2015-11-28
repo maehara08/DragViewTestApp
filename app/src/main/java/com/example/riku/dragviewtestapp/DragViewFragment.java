@@ -1,5 +1,6 @@
 package com.example.riku.dragviewtestapp;
 
+import android.content.res.ColorStateList;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.DialogFragment;
@@ -14,9 +15,10 @@ import android.widget.Toast;
 /**
  * Created by RIKU on 2015/11/27.
  */
-public class DragViewFragment extends Fragment {
-//public class DragViewFragment extends Fragment implements AlartDialogFragment.ClickListener {
+//public class DragViewFragment extends Fragment {
+public class DragViewFragment extends Fragment implements AlartDialogFragment.ClickListener , AlartDialogFragment.ConfigListener{
     TextView dragTextView;
+    int fragmentTag;
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -28,7 +30,7 @@ public class DragViewFragment extends Fragment {
 
     //Viewが生成し終わった後に呼ばれるメソッド
     @Override
-    public void onViewCreated(View view, Bundle savedInstanceState) {
+    public void onViewCreated(final View view, Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
 //        TextViewを紐付ける
@@ -42,13 +44,12 @@ public class DragViewFragment extends Fragment {
         dragTextView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-                Toast.makeText(getActivity().getApplicationContext(), "テスト", Toast.LENGTH_LONG).show();
+//                Toast.makeText(getActivity().getApplicationContext(), "テスト", Toast.LENGTH_LONG).show();
 
 
 //              ダイアログを表示する
                 DialogFragment newFragment = new AlartDialogFragment();
                 newFragment.show(getChildFragmentManager(), "contact_us");
-
 
 
                 return false;//trueにすると他のリスナーが呼ばれない
@@ -57,8 +58,19 @@ public class DragViewFragment extends Fragment {
     }
 
 
-//    @Override
-//    public void onClick(int id) {
-//
-//    }
+    @Override
+    public void  onClick(int id) {
+        Log.d("Tag", String.valueOf(id));
+        ColorStateList nowColor=dragTextView.getTextColors();
+        Log.d("NowColor",(nowColor).toString());
+        dragTextView.setTextColor(id);
+
+
+
+    }
+
+    @Override
+    public void onConfig(String str) {
+        dragTextView.setText(str);
+    }
 }
