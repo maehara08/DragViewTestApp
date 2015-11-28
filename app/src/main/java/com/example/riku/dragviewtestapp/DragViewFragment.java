@@ -2,9 +2,8 @@ package com.example.riku.dragviewtestapp;
 
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.app.DialogFragment;
-import android.app.Fragment;
-import android.support.v4.app.FragmentTransaction;
+import android.support.v4.app.DialogFragment;
+import android.support.v4.app.Fragment;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,6 +15,7 @@ import android.widget.Toast;
  * Created by RIKU on 2015/11/27.
  */
 public class DragViewFragment extends Fragment {
+//public class DragViewFragment extends Fragment implements AlartDialogFragment.ClickListener {
     TextView dragTextView;
 
     @Override
@@ -47,16 +47,18 @@ public class DragViewFragment extends Fragment {
 
 //              ダイアログを表示する
                 DialogFragment newFragment = new AlartDialogFragment();
-                newFragment.show(getFragmentManager(), "contact_us");
+                newFragment.show(getChildFragmentManager(), "contact_us");
+
 
 
                 return false;//trueにすると他のリスナーが呼ばれない
             }
         });
-
-
     }
 
 
-
+//    @Override
+//    public void onClick(int id) {
+//
+//    }
 }

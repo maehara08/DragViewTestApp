@@ -5,14 +5,17 @@ import android.app.AlertDialog;
 import android.app.DialogFragment;
 import android.content.DialogInterface;
 import android.os.Bundle;
-import android.app.FragmentTransaction;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
     TextView dragView;
+    Button button;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,12 +50,12 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-    private void showNewFragment() {
+     public void showNewFragment() {
         //Fragmentを設置
         // Fragmentを作成します
         DragViewFragment fragment = new DragViewFragment();
         // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
-        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        FragmentTransaction transaction = getSupportFragmentManager().beginTransaction();
         // 新しく追加を行うのでaddを使用します
         // 他にも、メソッドにはreplace removeがあります
         // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
