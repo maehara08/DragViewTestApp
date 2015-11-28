@@ -7,5 +7,4 @@
         android:text="移動可能１２３"
         android:id="@+id/textView3"
         android:layout_gravity="center_horizontal"
-        android:textSize="23dp"
-        android:onClick="drag1" />
+        android:textSize="23dp" />

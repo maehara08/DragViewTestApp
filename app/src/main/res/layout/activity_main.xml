@@ -21,9 +21,12 @@
             android:id="@+id/button2"
             android:layout_gravity="center" /><![CDATA[
 
+
+
             android:layout_gravity="center"
             android:textSize="19dp" />
 
-        ]]>
+
+    ]]>
     </FrameLayout>
 </LinearLayout>

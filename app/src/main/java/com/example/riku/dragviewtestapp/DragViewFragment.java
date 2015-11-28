@@ -1,13 +1,16 @@
 package com.example.riku.dragviewtestapp;
 
-import android.app.DialogFragment;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.app.DialogFragment;
 import android.app.Fragment;
+import android.support.v4.app.FragmentTransaction;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 /**
  * Created by RIKU on 2015/11/27.
@@ -31,19 +34,21 @@ public class DragViewFragment extends Fragment {
 //        TextViewを紐付ける
         dragTextView = (TextView) view.findViewById(R.id.textView3);
 
-
+//dragできるようにする
         DragViewListener listener = new DragViewListener(dragTextView);
         dragTextView.setOnTouchListener(listener);
+
+//        長押しクリックされたとき
         dragTextView.setOnLongClickListener(new View.OnLongClickListener() {
             @Override
             public boolean onLongClick(View v) {
-//                Toast.makeText(MainActivity.class, "テスト", Toast.LENGTH_LONG).show();
+                Toast.makeText(getActivity().getApplicationContext(), "テスト", Toast.LENGTH_LONG).show();
 
-//                showNewFragment();
 
-// ダイアログを表示する
+//              ダイアログを表示する
                 DialogFragment newFragment = new AlartDialogFragment();
                 newFragment.show(getFragmentManager(), "contact_us");
+
 
                 return false;//trueにすると他のリスナーが呼ばれない
             }
@@ -51,6 +56,7 @@ public class DragViewFragment extends Fragment {
 
 
     }
+
 
 
 }

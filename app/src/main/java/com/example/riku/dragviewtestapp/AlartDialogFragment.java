@@ -4,16 +4,16 @@ import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
+import android.graphics.Color;
 import android.os.Bundle;
+import android.app.Fragment;
 import android.app.DialogFragment;
-import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
+import android.app.FragmentManager;
 import android.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
-import android.app.FragmentTransaction;
 
 
 /**
@@ -21,20 +21,28 @@ import android.app.FragmentTransaction;
  */
 public class AlartDialogFragment extends DialogFragment {
     Activity activity = getActivity();
+    int tagNumber=0;
+    private ClickListener listener;
+
 
     @Override
     public Dialog onCreateDialog(Bundle savedInstanceState) {
         final String[] items = {"NewCard", "Change Colour", "Delete", "Edit"};
 
 
+
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setItems(items, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int which) {
+
+
 
                 switch (which) {
                     case 0:
 
                         makeToast(items[0] + "が押されました");
+                        //Fragmentを設置
+                        // Fragmentを作成します
                         //Fragmentを設置
                         // Fragmentを作成します
                         DragViewFragment fragment = new DragViewFragment();
@@ -47,9 +55,15 @@ public class AlartDialogFragment extends DialogFragment {
                         // 最後にcommitを使用することで変更を反映します
                         transaction.commit();
 
+
                         break;
                     case 1:
                         makeToast(items[1] + "が押されました");
+
+                        //Bundle color=new Bundle();
+                        //color.putInt("color", 2);
+
+
 
                         break;
                     case 2:
@@ -72,5 +86,9 @@ public class AlartDialogFragment extends DialogFragment {
         Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
 
         toast.show();
+    }
+
+    public interface ClickListener{
+        void onClick(int id);
     }
 }
