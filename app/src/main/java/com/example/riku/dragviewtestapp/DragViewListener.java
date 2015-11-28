@@ -37,7 +37,7 @@ public class DragViewListener implements View.OnTouchListener {
                         + textView12.getHeight());
                 break;
             case MotionEvent.ACTION_UP:
-                FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
+                FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
                 lp.setMargins(textView12.getLeft(), textView12.getTop(), 0, 0);
                 textView12.setLayoutParams(lp);
                 break;
