@@ -2,6 +2,8 @@ package com.example.riku.dragviewtestapp;
 
 import android.view.MotionEvent;
 import android.view.View;
+import android.widget.FrameLayout;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 /**
@@ -33,6 +35,11 @@ public class DragViewListener implements View.OnTouchListener {
                 // Viewを移動する
                 textView12.layout(left, top, left + textView12.getWidth(), top
                         + textView12.getHeight());
+                break;
+            case MotionEvent.ACTION_UP:
+                FrameLayout.LayoutParams lp = new FrameLayout.LayoutParams(LinearLayout.LayoutParams.FILL_PARENT, LinearLayout.LayoutParams.FILL_PARENT);
+                lp.setMargins(textView12.getLeft(), textView12.getTop(), 0, 0);
+                textView12.setLayoutParams(lp);
                 break;
         }
 
