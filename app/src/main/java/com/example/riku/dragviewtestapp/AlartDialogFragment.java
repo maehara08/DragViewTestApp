@@ -5,23 +5,13 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.SharedPreferences;
-import android.content.res.ColorStateList;
 import android.graphics.Color;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.app.FragmentManager;
 import android.support.v4.app.DialogFragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v7.app.AppCompatActivity;
-import android.text.InputType;
-import android.util.Log;
 import android.view.View;
-import android.view.Window;
 import android.widget.EditText;
-import android.widget.FrameLayout;
-import android.widget.TextView;
-import android.widget.Toast;
 
 
 /**
@@ -31,6 +21,7 @@ public class AlartDialogFragment extends DialogFragment {
     Activity activity = getActivity();
     int tagNumber;
     int nowColor;
+
     private ClickListener listener;
 
 
@@ -45,11 +36,11 @@ public class AlartDialogFragment extends DialogFragment {
                 switch (which) {
                     case 0: {
                         tagNumber++;
-                        makeToast(items[0] + "が押されました");
                         //Fragmentを設置
                         // Fragmentを作成します
                         //Fragmentを設置
                         // Fragmentを作成します
+                        Fragment fragment1 = getParentFragment();
                         DragViewFragment fragment = new DragViewFragment();
                         // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
                         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
@@ -57,47 +48,25 @@ public class AlartDialogFragment extends DialogFragment {
                         // 他にも、メソッドにはreplace removeがあります
                         // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
                         transaction.add(R.id.container, fragment, String.valueOf(tagNumber));
-                        Log.d("Tag", fragment.getTag());
+
+
                         // 最後にcommitを使用することで変更を反映します
                         transaction.commit();
+
                         break;
                     }
-                    case 1: {
-                        makeToast(items[1] + "が押されました");
+                    case 1:
 
-//                        Fragment fragment = getParentFragment();
-//                        if (fragment instanceof ClickListener) {
-//                            nowColor = Color.BLUE;
-//                            ((ClickListener) fragment).onClick(Color.BLUE);
-//                        }
-                    }
-                    createColorDialog();
+                        createColorDialog();
 
 
-                    break;
+                        break;
                     case 2:
-
-                        makeToast(items[2] + "が押されました");
-
-//                        //Fragmentを設置
-//                        // Fragmentを作成します
-//                        //Fragmentを設置
-//                        // Fragmentを作成します
-//                        DragViewFragment fragment = new DragViewFragment();
-//                        // Fragmentの追加や削除といった変更を行う際は、Transactionを利用します
-//                        FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
-//                        // 新しく追加を行うのでaddを使用します
-//                        // 他にも、メソッドにはreplace removeがあります
-//                        // メソッドの1つ目の引数は対象のViewGroupのID、2つ目の引数は追加するfragment
-//                        transaction.remove(fragment);
-//                        // 最後にcommitを使用することで変更を反映します
-//                        transaction.commit();
                         fragmentRemover();
 
 
                         break;
                     case 3:
-                        makeToast(items[3] + "が押されました");
                         createConfigDialog();
 
                         break;
@@ -109,11 +78,6 @@ public class AlartDialogFragment extends DialogFragment {
         return builder.create();
     }
 
-    public void makeToast(String message) {
-        Toast toast = Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT);
-
-        toast.show();
-    }
 
     public interface ClickListener {
         void onClick(int id);
@@ -146,7 +110,7 @@ public class AlartDialogFragment extends DialogFragment {
             public void onClick(DialogInterface dialog, int which) {
                 Fragment fragment = getParentFragment();
                 if (fragment instanceof ConfigListener) {
-                    
+
                     ((ConfigListener) fragment).onConfig(input_editText_cfg_text.getText().toString());
                 }
             }
@@ -154,8 +118,9 @@ public class AlartDialogFragment extends DialogFragment {
         alartDialog.create();
         alartDialog.show();
     }
-    private void fragmentRemover(){
-        Fragment fragment =getParentFragment();
+
+    private void fragmentRemover() {
+        Fragment fragment = getParentFragment();
         FragmentTransaction transaction = getActivity().getSupportFragmentManager().beginTransaction();
         transaction.remove(fragment);
         transaction.commit();
@@ -164,7 +129,7 @@ public class AlartDialogFragment extends DialogFragment {
 
 
     private void createColorDialog() {
-        final String[] items = {"Black","Blue", "Red", "Yellow","Green"};
+        final String[] items = {"Black", "Blue", "Red", "Yellow", "Green"};
 //        デフォルトで選択されているアイテム
         final int[] selectedItem = {0};
         new AlertDialog.Builder(getActivity())
@@ -212,7 +177,6 @@ public class AlartDialogFragment extends DialogFragment {
                                 }
 
                         }
-                        Log.d("Select", String.valueOf(which1));
 
 
                     }
@@ -220,9 +184,6 @@ public class AlartDialogFragment extends DialogFragment {
 
 
     }
-
-
-
 
 
 }

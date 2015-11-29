@@ -14,8 +14,8 @@ public class DragViewListener implements View.OnTouchListener {
     // ドラッグ対象のView
     private TextView textView12;
     // ドラッグ中に移動量を取得するための変数
-    private int oldx;
-    private int oldy;
+    public int oldx;
+    public int oldy;
 
     public DragViewListener(TextView textView) {
         this.textView12 = textView;
@@ -47,6 +47,9 @@ public class DragViewListener implements View.OnTouchListener {
         oldx = x;
         oldy = y;
         // falseにしないとほかのリスナーが呼ばれない
+
         return false;
+
+
     }
 }
